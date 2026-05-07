@@ -2,7 +2,7 @@
 id: constraint-resilient-web
 moniker: Constraint-resilient Web
 status: candidate
-statement: People rely on a resilient, long-lasting Web that adapts gracefully to change.
+statement: People in low-resource regions can meaningfully participate in the global Web.
 outcomes: []
 ewp: ["allpeople"]
 ---
