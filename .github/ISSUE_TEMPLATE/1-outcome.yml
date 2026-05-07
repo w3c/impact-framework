@@ -1,0 +1,35 @@
+name: New proposed Outcome
+description: Suggest a new Outcome W3C should contribute to in support of its mission
+labels: ["outcome"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing to W3C Impact Framework. This framework uses the theory of change to articulate what W3C needs to do to advance its mission. This issue template is to propose a new outcome, i.e. a pre-requisite to one of the 11 high-level impacts that describe W3C's mission.
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: A summary of the state of the Web or Web technologies that is required to achieve the selected impact
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact Statement
+      description: Which impact is it a prerequisite of?
+      options:
+        - Interoperable Web
+        - Competitive Web
+        - Open Web
+        - Persistent Web
+        - Constraint Resilient Web
+        - Accessible Web
+        - World-Wide Web
+        - Safe Web
+        - Privacy Protecting Web
+        - Trustworth Web
+        - Sustainable Web
+  - type: textarea
+    id: toc
+    attributes:
+      label: Justification
+      description: Please explain why this particular outcome is critical to achieving the said impact
