@@ -6,6 +6,8 @@ on:
 name: Update pages
 jobs:
   generate:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
