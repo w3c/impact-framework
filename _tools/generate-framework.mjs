@@ -35,11 +35,12 @@ for (const file of files) {
 const levelFormat = {
   "outcomes": {
     level: 3,
-    symbol: "🎯 ",
+    prefix: "🎯 Outcome:",
     contains: "outputs",
   },
   "outputs": {
     level: 4,
+    prefix: "Output:",
     contains: "activities"
   },
 };
@@ -55,7 +56,7 @@ function formatLevel(type, id) {
     return "";
   }
   const section = document.createElement("section");
-  section.innerHTML = `<h${format.level} id='${id}'>${format.symbol ?? ""}${object.data.title}</h${format.level}>
+  section.innerHTML = `<h${format.level} id='${id}'>${format.prefix} ${object.data.title}</h${format.level}>
 ${marked.parse(object.content)}
   ${object.data[format.contains]?.map(id => formatLevel(format.contains, id))?.join('')}
 `;
@@ -64,9 +65,10 @@ ${marked.parse(object.content)}
 
 for (const [id, statement] of framework.get("impact-statements").entries()) {
   const section = document.createElement("section");
-  section.innerHTML = `<h2 id='${id}'>${statement.data.statement}</h2>
+  section.innerHTML = `<details><summary><h2 id='${id}'>${statement.data.statement}</h2></summary>
   <aside>Derived from Ethical Web Principles: ${statement.data.ewp.map(id => `<a href='https://www.w3.org/TR/ethical-web-principles/#${id}'>${ewp[id]}</a>`).join(', ')}</aside>
   ${statement.data.outcomes.map(id => formatLevel("outcomes", id))?.join('')}
+  </details>
 `;
   mainEl.append(section);
 }
