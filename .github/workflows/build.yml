@@ -16,7 +16,7 @@ jobs:
       working-directory: _tools
       run: npm install
     - name: Generate Framework
-      run: mkdir _site && node _tools/generate-framework.mjs > _site/index.html
+      run: mkdir _site && node _tools/generate-framework.mjs
     - name: Copy assets
       run: cp -r _tools/assets _site
     - name: Deploy to "gh-pages" branch
