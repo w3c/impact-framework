@@ -1,0 +1,17 @@
+
+aside a { font-size: 0.8em; border-radius: 15%; background-color: #eff;}
+
+summary h2 { display: inline }
+
+details { margin-bottom: 1em;}
+
+details section.outputs {
+    margin-left: 1.5em;
+    padding-left: 0.5em;
+    border-left: thick #fcf solid;
+}
+
+section.outcomes >  div {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
