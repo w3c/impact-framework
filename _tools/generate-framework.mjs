@@ -99,15 +99,23 @@ ${[...framework.get("impact-statements").entries().map(([id, statement]) => `<li
 }
 
 async function generateImpactPages() {
-  for (const [id, statement] of framework.get("impact-statements").entries()) {
+  const impacts = [...framework.get("impact-statements").values()];
+  let counter = 0;
+  for (const statement of impacts) {
     const dom = await JSDOM.fromFile("_tools/framework-template.html");
     const document = dom.window.document;
     setTitle(document, "Impact: " + statement.data.statement);
     const mainEl = document.querySelector("main");
+    const nav = document.createElement("nav");
+    nav.innerHTML = `
+<a href="./" rel=up>Impact List</a> ${counter > 0 ? `<a href="${impacts[counter - 1].data.id}.html" rel=prev title="${impacts[counter - 1].data.title}">Previous Impact</a>`: "<span>Previous Impact</span>"} ${counter < impacts.length - 1 ? `<a href="${impacts[counter + 1].data.id}.html" rel=next title="${impacts[counter + 1].data.title}">Next Impact</a>`: "<span>Next Impact</span>"} 
+`;
+    mainEl.parentElement.insertBefore(nav, mainEl);
     mainEl.innerHTML = `
   <aside><abbr title="Ethical Web Principles">EWP</abbr>: ${statement.data.ewp.map(id => `<a href='https://www.w3.org/TR/ethical-web-principles/#${id}'>${ewp[id]}</a>`).join(', ')}</aside>
   ${statement.data.outcomes.map(id => formatLevel("outcomes", id, document))?.join('')}`;
-  await writeFile(`_site/${id}.html`, dom.serialize(), "utf-8");
+    await writeFile(`_site/${statement.data.id}.html`, dom.serialize(), "utf-8");
+    counter++;
   }
 }
 
