@@ -43,6 +43,7 @@ const levelFormat = {
 };
 
 function formatIndicators(indicators, level) {
+  if (level > 4 && !indicators.length) return "";
   return `
 <section class=indicators><h${level}>📈 Indicators</h${level}>
 <ul>
