@@ -9,7 +9,7 @@ const framework = new Map();
 
 const ewp = JSON.parse(await readFile("_tools/ewp.json", 'utf-8'));
 
-const files = (await glob('{impact-statements,outcomes,outputs,activities,inputs}/*.md')).sort();
+const files = (await glob('{impact-statements,outcomes,outputs,activities,inputs,indicators}/*.md')).sort();
 
 for (const file of files) {
 
@@ -46,7 +46,9 @@ function formatIndicators(indicators, level) {
   return `
 <section class=indicators><h${level}>📈 Indicators</h${level}>
 <ul>
-${indicators?.map(i => `<li>${i.title}</li>`)}
+${indicators.map(i => {
+ return `<li>${framework.get("indicators").get(i).data.title}</li>`;
+}).join("\n")}
 </ul>
 </section>
 `;
