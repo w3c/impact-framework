@@ -92,7 +92,7 @@ async function generateIndex() {
   mainEl.innerHTML = `
 <h2>Impact Statements</h2>
 <ol>
-${[...framework.get("impact-statements").entries().map(([id, statement]) => `<li><a href="${id}.html">${statement.data.statement}</a></li>`)].join('')}
+${[...framework.get("impact-statements").entries()].map(([id, statement]) => `<li><a href="${id}.html">${statement.data.statement}</a></li>`).join('')}
 </ol>
 `;
   await writeFile("_site/index.html", dom.serialize(), "utf-8");
