@@ -77,8 +77,8 @@ ${formatIndicators(object.data.indicators, format.level + 1)}
 }
 
 function setTitle(doc, title) {
-  doc.querySelector("title").textContent = title;
-  doc.querySelector("h1").textContent = title;
+  doc.querySelector("title").textContent = "[DRAFT] " + title;
+  doc.querySelector("h1").textContent = "[DRAFT] " + title;
 }
 
 async function generateIndex() {
@@ -114,6 +114,7 @@ async function generateImpactPages() {
     mainEl.parentElement.insertBefore(nav, mainEl);
     mainEl.innerHTML = `
   <aside><abbr title="Ethical Web Principles">EWP</abbr>: ${statement.data.ewp.map(id => `<a href='https://www.w3.org/TR/ethical-web-principles/#${id}'>${ewp[id]}</a>`).join(', ')}</aside>
+  <p><em>NB: The Theory of Change described in this document is a work in progress that has received only limited input and review from the community.</em></p>
   ${statement.data.outcomes.map(id => formatLevel("outcomes", id, document))?.join('')}`;
     await writeFile(`_site/${statement.data.id}.html`, dom.serialize(), "utf-8");
     counter++;
